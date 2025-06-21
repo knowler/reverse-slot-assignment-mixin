@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=color-scheme content="light dark">
+<meta name=viewport content=width=device-width,initial-scale=1>
+<!-- sorry firefox -->
+<script type=module blocking=render>
+import { ReverseSlotAssignment } from "./reverse-slot-assignment-mixin.js";
+
+class UnoReversoElement extends ReverseSlotAssignment(HTMLElement) {
+	constructor() {
+		super();
+
+		this.attachShadow({
+			mode: "open",
+			slotAssignment: "manual",
+		});
+	}
+}
+
+customElements.define("uno-reverso", UnoReversoElement);
+</script>
+
+<p><uno-reverso><span>First</span><span>Second</span><span>Third</span></uno-reverso>
+<p><uno-reverso>First<!-- -->Second<!-- -->Third</uno-reverso>
